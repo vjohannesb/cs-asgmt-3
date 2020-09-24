@@ -20,7 +20,7 @@ namespace SharedLibrary.Services
                 var weatherData = await WeatherService.FetchWeatherData();
 
                 // "Omformatera" till TemperatureModel för en egen struktur
-                // Om resultat inte gick att hämta, skicka null 
+                // Om resultat inte gick att hämta, skicka null (varningar skickas direkt från WeatherService)
                 var data = weatherData != null
                     ? new TemperatureModel(temp: weatherData.main.temp, hum: weatherData.main.humidity)
                     : null;
