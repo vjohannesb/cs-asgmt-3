@@ -6,14 +6,17 @@ namespace SharedLibrary.Models
 {
     public class WeatherModel
     {
-        // Struktur enligt OpenWeatherMaps JSON-respons
-        public Main main { get; set; }       
-
-        public class Main
+        public WeatherModel(double temp, double hum)
         {
-            public double temp { get; set; }
-            public double humidity { get; set; }
+            Temperature = temp;
+            Humidity = hum;
         }
 
+        public double Temperature { get; set; }
+        public double Humidity { get; set; }
+
+        // Implicit omvandling från APIModel -> Weathermodel
+        public static implicit operator WeatherModel(APIModel am)
+            => new WeatherModel(am.main.temp, am.main.humidity);
     }
 }

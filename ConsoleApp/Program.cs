@@ -12,13 +12,13 @@ namespace ConsoleApp
 
         static void Main(string[] args)
         {
-            // Device Client (this) -> IoT Device
+            // Device Client -> IoT Device
             DeviceService.SendMessageAsync(deviceClient).GetAwaiter();
 
-            // Azure Function -> Device Client (this)
+            // Azure Function -> Device Client 
             DeviceService.ReceiveMessageAsync(deviceClient).GetAwaiter();
 
-            // Pause
+            // "Pause"
             Console.ReadKey();
         }
     }

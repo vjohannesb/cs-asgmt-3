@@ -17,18 +17,13 @@ namespace SharedLibrary.Services
             while (true)
             {
                 // Anropa och vänta in resultat från OpenWeatherMap via WeatherService
-                var weatherData = await WeatherService.FetchWeatherData();
-
-                // "Omformatera" till TemperatureModel för en egen struktur
-                // Om resultat inte gick att hämta, skicka null (varningar skickas direkt från WeatherService)
-                var data = weatherData != null
-                    ? new TemperatureModel(temp: weatherData.main.temp, hum: weatherData.main.humidity)
-                    : null;
+                var data = await WeatherService.FetchWeatherData();
 
                 // Konvertera till JSON & vidare till bytes (spara json för konsolutskrift) 
                 string json = JsonConvert.SerializeObject(data);
                 var payload = new Message(Encoding.UTF8.GetBytes(json));
 
+                // Skicka meddelande
                 await deviceClient.SendEventAsync(payload);
 
                 Console.WriteLine($"Message sent: {json}");

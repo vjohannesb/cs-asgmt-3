@@ -27,8 +27,8 @@ namespace SharedLibrary.Services
                 {
                     try
                     {
-                        // Resultat i string/JSON -> WeatherModel
-                        return JsonConvert.DeserializeObject<WeatherModel>(await _response.Content.ReadAsStringAsync());
+                        // Resultat i string/JSON -> APIModel -> WeatherModel
+                        return JsonConvert.DeserializeObject<APIModel>(await _response.Content.ReadAsStringAsync());
                     }
                     catch (Exception ex)
                     {
