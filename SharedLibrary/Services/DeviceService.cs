@@ -36,7 +36,7 @@ namespace SharedLibrary.Services
         {
             while (true)
             {
-                // Försök hämta meddelande/"payload" från Azure Function
+                // Försök hämta meddelande (från http-request -> Azure Function (http-trigger) -> Device)
                 var payload = await deviceClient.ReceiveAsync();
 
                 // Printa payload om det finns innehåll, annars gå vidare till nästa iteration
